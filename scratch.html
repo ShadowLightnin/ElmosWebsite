@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scratch Page | Flamingos & LEGOs</title>
+  <link rel="stylesheet" href="css/scratch.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="navlink" href="index.html">Home</a>
+      <a class="navlink" href="resume.html">Résumé</a>
+      <a class="navlink" href="app.html">Web App</a>
+      <a class="navlink" href="#tableau">Jump to Tableau ↓</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Flamingos & LEGOs</h1>
+      <p class="subtext">A from-scratch HTML/CSS page showing lists, anchors, media embeds, and Tableau.</p>
+    </div>
+
+    <!-- DIV #1 -->
+    <div class="card">
+      <h2>Why This Is Cool</h2>
+      <p>
+        This page is built from a blank HTML file and styled with a custom stylesheet.
+        It’s intentionally simple, readable, and professional.
+      </p>
+    </div>
+
+    <!-- DIV #2 -->
+    <div class="card">
+      <h2>Nested list requirement</h2>
+
+      <ol>
+        <li>Favorite Lego Builds
+          <ul>
+            <li>Mini Lego Death Star</li>
+            <li>Recliner Double Couch</li>
+            <li>Christmas Lego Village</li>
+          </ul>
+        </li>
+        <li>Favorite Flamingo Facts
+          <ul>
+            <li>They are pink because of what they eat.</li>
+            <li>Flamingos often stand on one leg to conserve body heat and 
+              give their muscles a rest.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <!-- DIV #3 -->
+    <div class="card">
+      <h2>Image of Legos</h2>
+      <img class="feature-img" src="img/hobby.jpg" alt="Flamingos and LEGO hobby image" />
+    </div>
+
+    <div class="card">
+      <h2>YouTube Video About Legos</h2>
+      <div class="video-wrap">
+        <!-- add url in "" -->
+<iframe
+  src="https://www.youtube.com/embed/upBntTIOYrM"
+  title="YouTube video"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+      </div>
+      <p class="subtext">This video is about the power that one lego brick can have. 
+        Any lego master piece starts with just one brick. </p>
+    </div>
+
+<div class="card" id="tableau">
+  <h2>Interactive Tableau</h2>
+  <p class="subtext">This embedded Tableau visualization is live and interactive (filters, hover tooltips, etc.).</p>
+
+  <div class="tableau-wrap">
+    <div class="tableauPlaceholder" id="tableauVizLegoUnique" style="position: relative;">
+      <noscript>
+        <a href="#">
+          <img
+            alt="LEGO Sets - Tableau Dashboard"
+            src="https://public.tableau.com/static/images/LE/LEGOSets-HowUniquearetheySQLProject/Dashboard/1_rss.png"
+            style="border: none;"
+          />
+        </a>
+      </noscript>
+
+      <object class="tableauViz" style="display:none;">
+        <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+        <param name="embed_code_version" value="3" />
+        <param name="site_root" value="" />
+        <param name="name" value="LEGOSets-HowUniquearetheySQLProject/Dashboard" />
+        <param name="tabs" value="no" />
+        <param name="toolbar" value="yes" />
+        <param name="static_image" value="https://public.tableau.com/static/images/LE/LEGOSets-HowUniquearetheySQLProject/Dashboard/1.png" />
+        <param name="animate_transition" value="yes" />
+        <param name="display_static_image" value="yes" />
+        <param name="display_spinner" value="yes" />
+        <param name="display_overlay" value="yes" />
+        <param name="display_count" value="yes" />
+        <param name="language" value="en-US" />
+      </object>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    (function () {
+      var divElement = document.getElementById("tableauVizLegoUnique");
+      var vizElement = divElement.getElementsByTagName("object")[0];
+
+      vizElement.style.width = "100%";
+      vizElement.style.height = "700px";
+
+      var scriptElement = document.createElement("script");
+      scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    })();
+  </script>
+
+  <p class="subtext">
+    If this dashboard ever changes or breaks, replace it by opening a Tableau Public viz → Share → Copy Embed Code.
+  </p>
+</div>
+
+
+    <div class="footer">
+      <p>Navigation: <a href="index.html">Home</a> • <a href="resume.html">Résumé</a> • <a href="app.html">Web App</a></p>
+    </div>
+  </div>
+</body>
+</html>

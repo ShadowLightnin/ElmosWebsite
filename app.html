@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flamingo x LEGO App</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background:#0b1220; color:#e5e7eb; }
+    header { padding: 18px; background:#111827; border-bottom:1px solid rgba(255,255,255,0.1); }
+    header a { color:#93c5fd; text-decoration:none; margin-right:12px; }
+    main { max-width: 900px; margin: 0 auto; padding: 18px; }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card { background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; }
+    button { background:#fb7185; border:none; color:#0b1220; font-weight:700; padding:10px 12px; border-radius: 10px; cursor:pointer; }
+    button:hover { filter: brightness(1.05); }
+    .pill { display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); margin:6px 6px 0 0; cursor:pointer; }
+    .small { color:#9ca3af; font-size: 0.92rem; }
+    .out { font-size: 1.05rem; margin-top: 10px; line-height: 1.5; }
+    .toast { margin-top: 10px; color:#34d399; min-height: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="scratch.html">← Back to Scratch</a>
+    <a href="index.html">Home</a>
+    <a href="resume.html">Résumé</a>
+  </header>
+
+  <main>
+    <h1>Flamingo × LEGO Builder</h1>
+    <p class="small">Click buttons to generate a build idea + grab a color palette.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Flamingo Fact</h2>
+        <button id="factBtn">Generate Fact</button>
+        <div class="out" id="factOut">—</div>
+      </div>
+
+      <div class="card">
+        <h2>LEGO Palette (click to copy)</h2>
+        <div id="palette"></div>
+        <div class="toast" id="toast"></div>
+      </div>
+
+      <div class="card">
+        <h2>Build Prompt</h2>
+        <button id="promptBtn">Generate Prompt</button>
+        <div class="out" id="promptOut">—</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const facts = [
+      "Flamingos get their pink color from carotenoid pigments in their diet.",
+      "A group of flamingos is called a flamboyance.",
+      "Flamingos can sleep standing on one leg to conserve body heat.",
+      "Flamingos use their tongues like pumps to filter-feed.",
+      "Flamingo parents feed chicks a nutrient-rich 'crop milk' early on."
+    ];
+
+    const palettes = [
+      ["#fb7185", "#fda4af", "#fecdd3", "#f97316", "#f59e0b"],
+      ["#22c55e", "#a3e635", "#fde047", "#38bdf8", "#818cf8"],
+      ["#e879f9", "#c084fc", "#60a5fa", "#34d399", "#fbbf24"]
+    ];
+
+    const buildIdeas = [
+      "a beach scene with a tiny flamingo lagoon",
+      "a micro city park with flamingos as statues",
+      "a space rover discovering 'pink crystals'",
+      "a desert oasis with neon palm trees",
+      "a zoo habitat with viewing deck and info sign"
+    ];
+
+    const factOut = document.getElementById("factOut");
+    const promptOut = document.getElementById("promptOut");
+    const toast = document.getElementById("toast");
+    const paletteWrap = document.getElementById("palette");
+
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    function renderPalette() {
+      paletteWrap.innerHTML = "";
+      toast.textContent = "";
+      const colors = pick(palettes);
+
+      colors.forEach(hex => {
+        const span = document.createElement("span");
+        span.className = "pill";
+        span.textContent = hex;
+        span.style.background = hex;
+        span.style.color = "#0b1220";
+        span.style.fontWeight = "700";
+        span.title = "Click to copy";
+        span.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(hex);
+            toast.textContent = `Copied ${hex} to clipboard ✅`;
+          } catch {
+            toast.textContent = `Couldn’t copy (browser blocked clipboard). Hex: ${hex}`;
+          }
+        };
+        paletteWrap.appendChild(span);
+      });
+    }
+
+    document.getElementById("factBtn").onclick = () => {
+      factOut.textContent = pick(facts);
+    };
+
+    document.getElementById("promptBtn").onclick = () => {
+      const idea = pick(buildIdeas);
+      const mood = pick(["cute", "cinematic", "minimal", "colorful", "tropical"]);
+      const scale = pick(["micro-build", "small scene", "desk display", "diorama"]);
+      promptOut.textContent = `Build a ${mood} ${scale}: ${idea}. Use the palette above for consistent colors.`;
+    };
+
+    // init
+    renderPalette();
+  </script>
+</body>
+</html>
